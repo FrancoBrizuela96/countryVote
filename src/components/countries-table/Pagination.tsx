@@ -20,7 +20,7 @@ export const Pagination = ({
     };
 
     return (
-        <div className="flex justify-between pr-6 text-sm mt-3">
+        <div className="flex justify-between pr-6 text-sm mt-auto h-full">
             <span className="font-light text-[#393A42]">
                 {currentPage} items from {lastPage}
             </span>

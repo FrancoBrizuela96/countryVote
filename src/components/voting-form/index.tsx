@@ -53,7 +53,7 @@ export const VotingForm = () => {
     };
 
     return (
-        <div className="mt-14 p-4 rounded-2xl bg-primary-white">
+        <div className="mt-10 p-4 rounded-2xl bg-primary-white">
             {voteSubmitted ? (
                 <div className="flex gap-4 items-center">
                     <img src="src\assets\success-icon.svg" alt="success icon" />

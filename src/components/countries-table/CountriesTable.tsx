@@ -38,8 +38,8 @@ export const CountriesTable = ({ all_countries }: Props) => {
     }, [currentPage, all_countries]);
 
     return (
-        <div className="p-4 bg-primary-white rounded-2xl">
-            <table className="text-left w-full">
+        <div className="flex flex-col p-4 bg-primary-white rounded-2xl min-h-[480px]">
+            <table className="text-left w-full h-full">
                 <thead className="text-sm">
                     <tr>
                         {TABLE_HEADERS.map((header) => (
