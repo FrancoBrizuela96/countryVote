@@ -43,7 +43,9 @@ export const CountriesTable = ({ all_countries }: Props) => {
                 <thead className="text-sm">
                     <tr>
                         {TABLE_HEADERS.map((header) => (
-                            <th className="pb-4">{header}</th>
+                            <th key={header} className="pb-4">
+                                {header}
+                            </th>
                         ))}
                     </tr>
                 </thead>

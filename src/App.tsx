@@ -9,7 +9,7 @@ function App() {
         <CountryContextProvider>
             <div className="bg-[#F8F8F8] h-screen">
                 <Navbar />
-                <div className="px-10 lg:px-48">
+                <div className="px-10 2xl:px-48">
                     <VotingForm />
                     <CountriesTableContainer />
                 </div>

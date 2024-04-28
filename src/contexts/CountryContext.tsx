@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import { Country, CountryContextValue, TVotingForm } from "../types";
 import { MOCK_COUNTRIES } from "../api/mocks";
 import { getRegionWeather } from "../api/getRegionWeather";
@@ -21,36 +27,35 @@ export const CountryContextProvider: React.FC<CountryContextProviderProps> = ({
     const mock_countries = MOCK_COUNTRIES;
     const filteredOnlyCountries = MOCK_COUNTRIES.map((country) => country.name);
 
-    useEffect(() => {
+    const fetchWeatherData = useCallback(async () => {
         if (MOCK_COUNTRIES) {
-            const fetchData = async () => {
-                const countryWeatherPromises = MOCK_COUNTRIES.map(
-                    async (country) => {
-                        const weather = await getRegionWeather({
-                            region: country.name,
-                        });
-                        return { ...country, weather };
-                    }
-                );
+            const countryWeatherPromises = MOCK_COUNTRIES.map(
+                async (country) => {
+                    const weather = await getRegionWeather({
+                        region: country.name,
+                    });
+                    return { ...country, weather };
+                }
+            );
 
-                const countriesWithWeather = await Promise.all(
-                    countryWeatherPromises
-                );
+            const countriesWithWeather = await Promise.all(
+                countryWeatherPromises
+            );
 
-                const sortedCountriesByFavourite = countriesWithWeather.sort(
-                    (country1, country2) => country2.votes - country1.votes
-                );
+            const sortedCountriesByFavourite = countriesWithWeather.sort(
+                (country1, country2) => country2.votes - country1.votes
+            );
 
-                setAllCountriesWithWeather(sortedCountriesByFavourite);
-            };
-
-            fetchData();
+            setAllCountriesWithWeather(sortedCountriesByFavourite);
         }
     }, []);
 
+    useEffect(() => {
+        fetchWeatherData();
+    }, [fetchWeatherData]);
+
     const submitVotingForm = (form: TVotingForm) => {
         if (allCountriesWithWeather) {
-            console.log(allCountriesWithWeather);
             const newCountriesUpdated = allCountriesWithWeather.map(
                 (country) => {
                     if (country.name === form.country) {
