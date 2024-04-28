@@ -15,9 +15,10 @@ export interface TVotingForm {
 }
 
 export interface CountryContextValue {
-    mock_countries: Country[];
     filteredOnlyCountries: string[];
-    allCountriesWithWeather: Country[] | null;
     submitVotingForm: (form: TVotingForm) => void;
     voteSubmitted: boolean;
+    setSearchText: React.Dispatch<React.SetStateAction<string>>;
+    searchText: string;
+    allCountriesByFilter: Country[] | null;
 }

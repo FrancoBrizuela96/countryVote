@@ -1,32 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CountriesTable } from "./CountriesTable";
-import { Country } from "../../types";
 import { CustomInput } from "../common/CustomInput";
 import { useCountryContext } from "../../contexts/CountryContext";
 
 export const CountriesTableContainer = () => {
-    const [searchText, setSearchText] = useState<string>("");
-    const [countries, setCountries] = useState<null | Country[]>(null);
-    const { allCountriesWithWeather } = useCountryContext();
-
-    useEffect(() => {
-        if (allCountriesWithWeather) {
-            const finalCountries = allCountriesWithWeather.filter((country) => {
-                const searchFields = [
-                    country.name,
-                    country.capital_city,
-                    country.region,
-                    country.sub_region,
-                ];
-
-                return searchFields.some((field) =>
-                    field.toLowerCase().includes(searchText.toLowerCase())
-                );
-            });
-
-            setCountries(finalCountries);
-        }
-    }, [searchText, allCountriesWithWeather]);
+    const { searchText, setSearchText, allCountriesByFilter } =
+        useCountryContext();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -51,7 +30,7 @@ export const CountriesTableContainer = () => {
                 value={searchText}
                 className="max-w-96 text-sm"
             />
-            {countries && <CountriesTable all_countries={countries} />}
+            {allCountriesByFilter && <CountriesTable />}
         </div>
     );
 };

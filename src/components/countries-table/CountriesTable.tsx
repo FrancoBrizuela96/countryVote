@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "./Pagination";
 import { Country } from "../../types";
-
-interface Props {
-    all_countries: Country[];
-}
+import { useCountryContext } from "../../contexts/CountryContext";
 
 const TABLE_HEADERS = [
     "Country",
@@ -15,27 +12,32 @@ const TABLE_HEADERS = [
     "Votes",
 ];
 
-export const CountriesTable = ({ all_countries }: Props) => {
+export const CountriesTable = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [countriesDisplayed, setCountriesDisplayed] = useState<
+    const [currentPageCountries, setCurrentPageCountries] = useState<
         null | Country[]
     >(null);
+    const { allCountriesByFilter } = useCountryContext();
     const itemsPerPage: number = 10;
-    const lastPage: number = Math.ceil(all_countries.length / itemsPerPage);
+    const lastPage: number = allCountriesByFilter
+        ? Math.ceil(allCountriesByFilter.length / itemsPerPage)
+        : 1;
 
     useEffect(() => {
-        const indexOfLastCountryDisplaying = currentPage * itemsPerPage;
+        if (allCountriesByFilter) {
+            const indexOfLastCountryDisplaying = currentPage * itemsPerPage;
 
-        const indexOfFirstCountryDisplaying =
-            indexOfLastCountryDisplaying - itemsPerPage;
+            const indexOfFirstCountryDisplaying =
+                indexOfLastCountryDisplaying - itemsPerPage;
 
-        const countriesToDisplay = all_countries.slice(
-            indexOfFirstCountryDisplaying,
-            indexOfLastCountryDisplaying
-        );
+            const countriesToDisplay = allCountriesByFilter.slice(
+                indexOfFirstCountryDisplaying,
+                indexOfLastCountryDisplaying
+            );
 
-        setCountriesDisplayed(countriesToDisplay);
-    }, [currentPage, all_countries]);
+            setCurrentPageCountries(countriesToDisplay);
+        }
+    }, [currentPage, allCountriesByFilter]);
 
     return (
         <div className="flex flex-col p-4 bg-primary-white rounded-2xl min-h-[480px]">
@@ -50,7 +52,7 @@ export const CountriesTable = ({ all_countries }: Props) => {
                     </tr>
                 </thead>
                 <tbody className="font-medium leading-5">
-                    {countriesDisplayed?.map((country) => (
+                    {currentPageCountries?.map((country) => (
                         <tr key={country.name}>
                             <td className="pb-4">{country.name}</td>
                             <td className="pb-4">{country.capital_city}</td>

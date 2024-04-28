@@ -23,8 +23,11 @@ export const CountryContextProvider: React.FC<CountryContextProviderProps> = ({
     const [allCountriesWithWeather, setAllCountriesWithWeather] = useState<
         null | Country[]
     >(null);
+    const [allCountriesByFilter, setAllCountriesByFilter] = useState<
+        null | Country[]
+    >(null);
     const [voteSubmitted, setVoteSubmitted] = useState<boolean>(false);
-    const mock_countries = MOCK_COUNTRIES;
+    const [searchText, setSearchText] = useState<string>("");
     const filteredOnlyCountries = MOCK_COUNTRIES.map((country) => country.name);
 
     const fetchWeatherData = useCallback(async () => {
@@ -54,6 +57,25 @@ export const CountryContextProvider: React.FC<CountryContextProviderProps> = ({
         fetchWeatherData();
     }, [fetchWeatherData]);
 
+    useEffect(() => {
+        if (allCountriesWithWeather) {
+            const finalCountries = allCountriesWithWeather.filter((country) => {
+                const searchFields = [
+                    country.name,
+                    country.capital_city,
+                    country.region,
+                    country.sub_region,
+                ];
+
+                return searchFields.some((field) =>
+                    field.toLowerCase().includes(searchText.toLowerCase())
+                );
+            });
+
+            setAllCountriesByFilter(finalCountries);
+        }
+    }, [searchText, allCountriesWithWeather]);
+
     const submitVotingForm = (form: TVotingForm) => {
         if (allCountriesWithWeather) {
             const newCountriesUpdated = allCountriesWithWeather.map(
@@ -77,11 +99,12 @@ export const CountryContextProvider: React.FC<CountryContextProviderProps> = ({
     return (
         <CountryContext.Provider
             value={{
-                mock_countries,
                 filteredOnlyCountries,
-                allCountriesWithWeather,
                 submitVotingForm,
                 voteSubmitted,
+                searchText,
+                setSearchText,
+                allCountriesByFilter,
             }}>
             {children}
         </CountryContext.Provider>
