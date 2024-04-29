@@ -1,4 +1,6 @@
 import React from "react";
+import arrowRight from "../../assets/right-arrow.svg";
+import arrowLeft from "../../assets/left-arrow.svg";
 
 interface Props {
     currentPage: number;
@@ -28,7 +30,7 @@ export const Pagination = ({
                 <button
                     onClick={() => handlePageChange(-1)}
                     className="select-none">
-                    <img src="src\assets\left-arrow.svg" alt="arrow left" />
+                    <img src={arrowLeft} alt="arrow left" />
                 </button>
                 <span className="font-semibold text-[#8A8C90] cursor-default select-none">
                     {currentPage}
@@ -36,7 +38,7 @@ export const Pagination = ({
                 <button
                     onClick={() => handlePageChange(1)}
                     className="select-none">
-                    <img src="src\assets\right-arrow.svg" alt="arrow right" />
+                    <img src={arrowRight} alt="arrow right" />
                 </button>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import errorIcon from "../../assets/error-icon.svg";
 
 interface Props {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -41,7 +42,7 @@ export const CustomInput = ({
                 />
                 {error && (
                     <img
-                        src="src\assets\error-icon.svg"
+                        src={errorIcon}
                         alt="error icon"
                         className="p-1 pr-2"
                     />

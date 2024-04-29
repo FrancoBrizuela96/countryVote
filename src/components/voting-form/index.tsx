@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useCountryContext } from "../../contexts/CountryContext";
 import { CustomInput } from "../common/CustomInput";
 import { TVotingForm } from "../../types";
+import successIcon from "../../assets/success-icon.svg";
 
 export const VotingForm = () => {
     const [formState, setFormState] = useState<TVotingForm>({
@@ -56,7 +57,7 @@ export const VotingForm = () => {
         <div className="mt-10 p-4 rounded-2xl bg-primary-white drop-shadow-sm">
             {voteSubmitted ? (
                 <div className="flex gap-4 items-center">
-                    <img src="src\assets\success-icon.svg" alt="success icon" />
+                    <img src={successIcon} alt="success icon" />
                     <span className="font-bold text-base leading-4 text-primary-dark">
                         Your vote was succesfully submitted
                     </span>
