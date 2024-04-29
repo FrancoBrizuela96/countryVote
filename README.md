@@ -10,6 +10,8 @@ How to run:
 
 4 - You should now be able to open your browser and navigate to this URL, application should be live! => http://localhost:5173/
 
+5 - Project is also visible on production environment! Follow this link => https://country-vote.vercel.app/
+
 My Approach:
 
 -   I decided to use React with Typescript for this project (that's always my preference).
