@@ -21,7 +21,7 @@ export const CountriesTableContainer = () => {
                     <img
                         src="src\assets\search.svg"
                         alt="search icon"
-                        className="pl-2"
+                        className="pl-4"
                     />
                 }
                 type="text"

@@ -8,6 +8,10 @@ export default {
                 "primary-dark": "#15172A",
                 "secondary-grey": "#FDFDFD",
             },
+            fontFamily: {
+                inter: ["Inter"],
+                workSans: ["Work Sans"],
+            },
         },
     },
     plugins: [],

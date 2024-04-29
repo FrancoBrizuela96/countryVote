@@ -19,3 +19,4 @@ My Approach:
 -   I divided the application in 2 big sections the voting form and the countries table
 -   For state management I could've used Redux or Zustand, but since this was a quick and small project I decided to go with context API ( wich is easier to implement and much less boilerplate ). I think this is the best approach for this type of projects.
 -   Application is working with all it's functionalities, also when you submit your vote you can see the table actually changing with the new voted number!
+-   I invested around 6-7 hours to finish the project.

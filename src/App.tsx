@@ -7,7 +7,7 @@ import { CountryContextProvider } from "./contexts/CountryContext";
 function App() {
     return (
         <CountryContextProvider>
-            <div className="bg-[#F8F8F8] h-screen">
+            <div className="bg-[#F8F8F8] h-screen font-inter">
                 <Navbar />
                 <div className="px-10 2xl:px-48">
                     <VotingForm />

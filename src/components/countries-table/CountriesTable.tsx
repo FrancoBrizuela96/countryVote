@@ -40,9 +40,9 @@ export const CountriesTable = () => {
     }, [currentPage, allCountriesByFilter]);
 
     return (
-        <div className="flex flex-col p-4 bg-primary-white rounded-2xl min-h-[480px]">
+        <div className="flex flex-col p-4 bg-primary-white drop-shadow-sm rounded-2xl min-h-[480px]">
             <table className="text-left w-full h-full">
-                <thead className="text-sm">
+                <thead className="text-sm font-workSans">
                     <tr>
                         {TABLE_HEADERS.map((header) => (
                             <th key={header} className="pb-4">
