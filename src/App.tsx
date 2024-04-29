@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { VotingForm } from "./components/voting-form";
 import { CountriesTableContainer } from "./components/countries-table";

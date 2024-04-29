@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "./Pagination";
 import { Country } from "../../types";
 import { useCountryContext } from "../../contexts/CountryContext";

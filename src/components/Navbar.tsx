@@ -1,5 +1,3 @@
-import React from "react";
-
 export const Navbar = () => {
     return (
         <div className="pt-4 px-2 lg:px-8">
