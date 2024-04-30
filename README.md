@@ -12,6 +12,8 @@ How to run:
 
 5 - Project is also visible on production environment! Follow this link => https://country-vote.vercel.app/
 
+6 - If at some point you can't see the temperature for each country please follow this link to see if wttr API is properly working! https://en.wttr.in/Slovakia?format=%C%20%t
+
 My Approach:
 
 -   I decided to use React with Typescript for this project (that's always my preference).
